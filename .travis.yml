@@ -1,0 +1,24 @@
+sudo: required
+services:
+  - docker
+before_install:
+        - docker build -t swamisub/docker-multi-react -f ./client/Dockerfile.dev ./client/Dockerfile.dev
+
+# Screipt is the section where we run all tests
+script:
+  - docker run -e CI=true -t swamisub/docker-multi-react npm test -- --coverage
+
+after_success:
+  - docker build -t swamisub/docker-multi-client ./client
+  - docker build -t swamisub/docker-multi-nginx ./nginx
+  - docker build -t swamisub/docker-multi-server ./server
+  - docker build -t swamisub/docker-multi-worker ./worker
+
+  - echo "$DOCKER_PASSWORD" |docker login -u "DOCKER_ID" --password-stdin
+
+  - docker push swamisub/docker-multi-client
+  - docker push swamisub/docker-multi-nginx
+  - docker push swamisub/docker-multi-server
+  - docker push swamisub/docker-multi-worker
+
+
