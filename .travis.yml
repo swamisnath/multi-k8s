@@ -1,25 +1,9 @@
 sudo: required
 services:
   - docker
-before_install:
-        - docker build -t sswaminath/docker-multi-react -f ./client/Dockerfile.dev ./client
 
-# Screipt is the section where we run all tests
-script:
-  - docker run -e CI=true -t sswaminath/docker-multi-react npm test -- --coverage
+  - docker login -u $DOCKER_USER -p $DOCKER_PASS
 
-after_success:
-  - docker build -t sswaminath/docker-multi-client ./client
-  - docker build -t sswaminath/docker-multi-nginx ./nginx
-  - docker build -t sswaminath/docker-multi-server ./server
-  - docker build -t sswaminath/docker-multi-worker ./worker
-
-  - echo "$DOCKER_PASSWORD" |docker login -u "DOCKER_ID" --password-stdin
-
-  - docker push sswaminath/docker-multi-client
-  - docker push sswaminath/docker-multi-nginx
-  - docker push sswaminath/docker-multi-server
-  - docker push sswaminath/docker-multi-worker
 
 
 
