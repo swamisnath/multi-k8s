@@ -25,7 +25,7 @@ deploy:
   provider: elasticbeanstalk
   region: us-east-1
   app: khoma 
-  env: khoma-env-1
+  env: khoma-env
   bucket_name: elasticbeanstalk-us-east-1-138402561056
   bucket_path: docker-multi
   on:
