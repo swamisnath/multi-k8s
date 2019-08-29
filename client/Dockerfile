@@ -3,7 +3,7 @@
 FROM node:alpine
 # the from builder option doesn't work!
 
-WORKDIR /App
+WORKDIR /app
 COPY ./package.json .
 
 RUN npm install

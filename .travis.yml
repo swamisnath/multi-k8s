@@ -4,7 +4,7 @@ services:
 before_install:
         - docker build -t sswaminath/docker-multi-react -f ./client/Dockerfile.dev ./client
 
-# Script is the section where we run all tests
+# Script is the section where we run all tests - 08292019
 script:
   - docker run -e CI=true -t sswaminath/docker-multi-react npm test -- --coverage
 
