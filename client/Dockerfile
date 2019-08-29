@@ -1,8 +1,9 @@
 #FROM node:alpine 
-FROM node:alpine as builder
+#FROM node:alpine as builder
+FROM node:alpine
 # the from builder option doesn't work!
 
-WORKDIR /app
+WORKDIR /App
 COPY ./package.json .
 
 RUN npm install
@@ -13,4 +14,4 @@ FROM nginx
 EXPOSE 3000
 COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 #COPY build/ /usr/share/nginx/html
-#COPY --from=builder /App/build/ /usr/share/nginx/html
+COPY build/ /usr/share/nginx/html

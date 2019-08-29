@@ -1,5 +1,5 @@
 {
-  "AWSEBDockerrunVersion": 3,
+  "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [
 	   {
             "name": "client",
@@ -22,7 +22,7 @@
 	     "image": "sswaminath/multi-worker",
 	     "hostname": "worker",
 	     "essential": false,
-	     "memory:: 128
+	     "memory: 128
 	   },
 	   {
              "name": "nginx",
@@ -42,4 +42,3 @@
 	]
 
 }
-
